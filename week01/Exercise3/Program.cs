@@ -4,13 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        // For Part 3, where we use a random number
+    
         Random randomGenerator = new Random();
         int magicNumber = randomGenerator.Next(1, 101);
 
         int guess = -1;
 
-        // We could also use a do-while loop here...
+
         while (guess != magicNumber)
         {
             Console.Write("What is your guess? ");
