@@ -1,9 +1,12 @@
+// PromptGenerator.cs
+// Improved prompt selection to avoid repetition
 using System;
 using System.Collections.Generic;
 
 public class PromptGenerator
 {
     private List<string> _prompts;
+    private string _lastPrompt; // Track last prompt
 
     public PromptGenerator()
     {
@@ -20,7 +23,13 @@ public class PromptGenerator
     public string GetRandomPrompt()
     {
         Random random = new Random();
-        int index = random.Next(_prompts.Count);
-        return _prompts[index];
+        string prompt;
+        do
+        {
+            prompt = _prompts[random.Next(_prompts.Count)];
+        } while (prompt == _lastPrompt); // Ensure it's not the same as last time
+
+        _lastPrompt = prompt;
+        return prompt;
     }
 }

@@ -1,3 +1,5 @@
+// Journal.cs
+// Added CSV saving and loading functionality
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,19 +31,20 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string fileName)
+    public void SaveToCSV(string fileName)
     {
         using (StreamWriter writer = new StreamWriter(fileName))
         {
+            writer.WriteLine("Date,Prompt,Entry,Mood");
             foreach (Entry entry in _entries)
             {
-                writer.WriteLine(entry.ToFileFormat());
+                writer.WriteLine(entry.ToCSV());
             }
         }
-        Console.WriteLine("Journal saved successfully!");
+        Console.WriteLine("Journal saved as CSV successfully!");
     }
 
-    public void LoadFromFile(string fileName)
+    public void LoadFromCSV(string fileName)
     {
         if (!File.Exists(fileName))
         {
@@ -51,14 +54,14 @@ public class Journal
 
         _entries.Clear();
         string[] lines = File.ReadAllLines(fileName);
-        foreach (string line in lines)
+        for (int i = 1; i < lines.Length; i++) // Skip header row
         {
-            Entry entry = Entry.FromFileFormat(line);
+            Entry entry = Entry.FromCSV(lines[i]);
             if (entry != null)
             {
                 _entries.Add(entry);
             }
         }
-        Console.WriteLine("Journal loaded successfully!");
+        Console.WriteLine("Journal loaded from CSV successfully!");
     }
 }

@@ -38,13 +38,13 @@ class Program
                 case "3":
                     Console.Write("Enter filename to save journal: ");
                     string saveFile = Console.ReadLine();
-                    journal.SaveToFile(saveFile);
+                    journal.SaveToCSV(saveFile);
                     break;
 
                 case "4":
                     Console.Write("Enter filename to load journal: ");
                     string loadFile = Console.ReadLine();
-                    journal.LoadFromFile(loadFile);
+                    journal.LoadFromCSV(loadFile);
                     break;
 
                 case "5":
