@@ -1,3 +1,7 @@
+// DisplayQuote()
+// This method displays inspirational mindfulness quotes to motivate the user
+// and enhance their experience after completing an activity
+
 using System;
 
 class Program
