@@ -1,0 +1,34 @@
+using System;
+
+// Swimming derived class
+public class Swimming : Activity
+{
+    private int _laps;
+    private const double LapDistanceInMiles = 50.0 / 1000 * 0.62; // 50 meters converted to miles
+
+    public int Laps
+    {
+        get { return _laps; }
+        set { _laps = value; }
+    }
+
+    public Swimming(DateTime date, int minutes, int laps) : base(date, minutes)
+    {
+        _laps = laps;
+    }
+
+    public override double GetDistance()
+    {
+        return _laps * LapDistanceInMiles;
+    }
+
+    public override double GetSpeed()
+    {
+        return (GetDistance() / Minutes) * 60;
+    }
+
+    public override double GetPace()
+    {
+        return Minutes / GetDistance();
+    }
+}
